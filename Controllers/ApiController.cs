@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OlympicMedals.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace OlympicMedals.Controllers 
 {
@@ -17,24 +18,24 @@ namespace OlympicMedals.Controllers
             _dataContext = db;
         }
 
-        [HttpGet]
+        [HttpGet, SwaggerOperation(summary: "returns all countries, null")]
         public IEnumerable<CountryMedals> GetAllCountries()
         {
             return _dataContext.CountryMedals;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), SwaggerOperation(summary: "returns specific country", null)]
         public CountryMedals GetSingleCountry(int id)
         {
             return _dataContext.CountryMedals.Find(id);
         }
 
-        [HttpPost]
+        [HttpPost, SwaggerOperation(summary: "add country to collection", null), ProducesResponseType(typeof(CountryMedals), 201), SwaggerResponse(201, "Created")]
         public CountryMedals AddCountry([FromBody] CountryMedals country) => _dataContext.AddCountry(new CountryMedals {
             Name = country.Name
         });
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), SwaggerOperation(summary: "delete country from collection", null), ProducesResponseType(typeof(CountryMedals), 204), SwaggerResponse(204, "No Content")]
         public ActionResult Delete(int id){
            CountryMedals wc = _dataContext.CountryMedals.Find(id);
             if (wc == null){
