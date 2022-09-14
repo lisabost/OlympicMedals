@@ -28,6 +28,12 @@ namespace OlympicMedals.Controllers
         {
             return _dataContext.CountryMedals.Find(id);
         }
+
+        [HttpPost]
+        public CountryMedals AddCountry([FromBody] CountryMedals country) => _dataContext.AddCountry(new CountryMedals {
+            Name = country.Name
+        });
+
     }
 
 }
