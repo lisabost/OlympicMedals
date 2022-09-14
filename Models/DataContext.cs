@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace OlympicMedals 
+namespace OlympicMedals.Models 
 {
     public class DataContext : DbContext
     {
