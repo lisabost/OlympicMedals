@@ -32,7 +32,12 @@ namespace OlympicMedals
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OlympicMedals", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "OlympicMedals", 
+                    Version = "v1",
+                    Description = "API for tracking olypic medals by country",
+                 });
+                c.TagActionsBy(api => new[] { api.HttpMethod });
             });
         }
 
