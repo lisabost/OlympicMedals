@@ -22,6 +22,12 @@ namespace OlympicMedals.Controllers
         {
             return _dataContext.CountryMedals;
         }
+
+        [HttpGet("{id}")]
+        public CountryMedals GetSingleCountry(int id)
+        {
+            return _dataContext.CountryMedals.Find(id);
+        }
     }
 
 }
