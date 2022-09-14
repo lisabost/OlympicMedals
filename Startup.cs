@@ -37,6 +37,7 @@ namespace OlympicMedals
                     Version = "v1",
                     Description = "API for tracking olypic medals by country",
                  });
+                c.EnableAnnotations();
                 c.TagActionsBy(api => new[] { api.HttpMethod });
             });
         }
