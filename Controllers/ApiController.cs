@@ -34,6 +34,16 @@ namespace OlympicMedals.Controllers
             Name = country.Name
         });
 
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id){
+           CountryMedals wc = _dataContext.CountryMedals.Find(id);
+            if (wc == null){
+                return NotFound();
+            }
+            _dataContext.DeleteCountry(id);
+            return NoContent();
+        } 
+
     }
 
 }
