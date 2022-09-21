@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OlympicMedals.Models;
 using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace OlympicMedals.Controllers 
 {
@@ -44,7 +45,18 @@ namespace OlympicMedals.Controllers
             _dataContext.DeleteCountry(id);
             return NoContent();
         } 
-
+        
+        [HttpPatch("{id")]
+        public ActionResult Patch(int id, [FromBody] JsonPatchDocument<CountryMedals> patch)
+        {
+            CountryMedals country = _dataContext.CountryMedals.Find(id);
+            if(country != null)
+            {
+                return NotFound();
+            }
+            _dataContext.PatchCountry(id, patch);
+            return NoContent();
+        }
     }
 
 }
